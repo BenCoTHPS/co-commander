@@ -1,12 +1,12 @@
-import { getCredentials, clearCredentials } from '../lib/actions';
-import { syncTwitchProfile, getLiveTwitchStats } from '../lib/twitch';
+import { getCredentials, clearCredentials } from '../lib/db/queries';
+import { syncTwitchProfile, getLiveTwitchStats } from '../lib/twitch/api';
 import { useAppStore } from '../lib/store';
-import LoginButton from './components/LoginButton';
-import StreamManager from './components/StreamManager';
- 
+import LoginButton from './components/auth/LoginButton';
+import StreamManager from './components/stream/StreamManager';
+
 export default async function Home() {
     const credentials = await getCredentials();
-    let twitchCred: any = credentials.find(c => c.platform === 'twitch');
+    let twitchCred: any = credentials.find((c: any) => c.platform === 'twitch');
 
     // Static profile data (from DB)
     if (twitchCred && !twitchCred.displayName) {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { loginWithTwitch, pollForToken } from '@/lib/actions';
+import { loginWithTwitch, pollForToken } from '@/lib/actions/auth.actions';
 
 export default function LoginButton() {
   const [authData, setAuthData] = useState<any>(null);

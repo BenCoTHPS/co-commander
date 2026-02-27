@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { fetchCurrentStreamInfo, searchCategoriesAction, updateStreamAction } from '@/lib/actions';
+import { fetchCurrentStreamInfo, searchCategoriesAction, updateStreamAction } from '@/lib/actions/stream.actions';
 
 export default function StreamManager() {
   const [title, setTitle] = useState('');
