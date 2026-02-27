@@ -1,7 +1,7 @@
 import { getCredentials, clearCredentials } from '../lib/db/queries';
 import { syncTwitchProfile, getLiveTwitchStats } from '../lib/twitch/api';
-import { useAppStore } from '../lib/store';
 import LoginButton from './components/auth/LoginButton';
+import StoreInitializer from './components/StoreInitializer';
 import StreamManager from './components/stream/StreamManager';
 
 export default async function Home() {
@@ -24,6 +24,7 @@ export default async function Home() {
     
     return (
         <main>
+            {twitchCred && <StoreInitializer user={twitchCred} />}
             <section>
                 {twitchCred && stats ? (
                     <>
