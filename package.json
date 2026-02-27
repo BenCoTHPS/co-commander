@@ -1,0 +1,66 @@
+{
+  "name": "stream-command-center",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local stream management dashboard",
+  "author": "BenCo <BenCo.WebDev@gmai.com>",
+  "main": "main.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "app:dev": "concurrently \"npm run dev\" \"electron .\"",
+    "package": "npm run build && electron-builder --win && npm run postinstall",
+    "postinstall": "prisma generate && npm rebuild better-sqlite3"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.4.1",
+    "@prisma/client": "^7.4.1",
+    "better-sqlite3": "^12.6.2",
+    "dotenv": "^17.3.1",
+    "next": "16.1.6",
+    "pkce-challenge": "^6.0.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-use-websocket": "^4.13.0",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "concurrently": "^9.2.1",
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "prisma": "^7.4.1",
+    "typescript": "^5"
+  },
+  "build": {
+    "appId": "com.streamcommandcenter.app",
+    "productName": "Stream Command Center",
+    "asar": false,
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      ".next/**/*",
+      "main.js",
+      "package.json",
+      "prisma/**/*",
+      "node_modules/**/*",
+      ".env"
+    ]
+  }
+}

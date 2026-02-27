@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma/client" // You must add this line
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ==========================================
+// 1. CONFIGURATION LAYER
+// ==========================================
+model UserCredential {
+  id           String   @id @default(uuid())
+  platform     String   @unique
+  token        String   // Stores the JSON token object
+  displayName  String?  // Twitch Username
+  profileImage String?  // Avatar URL
+  updatedAt    DateTime @updatedAt
+}
